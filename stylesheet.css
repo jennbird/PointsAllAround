@@ -1,0 +1,18 @@
+div {
+    background: green;
+}
+
+
+.blue {
+    background: blue; /* . means it's a class. then you put the name of the class attribute (blue)  */
+}
+
+.big-text {  /* big text is the class, and the whole thing is a rule */
+    font-size: 2rem;
+    font-weight: bold; /* font is a property in this css rule */
+}
+
+#buddies { /* target an id with # (an id targets ONE THING. a class targets as MANY AS YOU WANT */
+    height: 200px;
+    
+}
