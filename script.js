@@ -11,3 +11,13 @@ function square(num) {
 
 //num is the input. the first and second function do the same thing but the second one is BETTER/EASIER
 
+
+const circle = document.getElementById("circle");  //this is a function that gets the element with the id circle
+
+function placeCircleRandomly() {
+    circle.style.top = Math.random() * (window.innerHeight - 50) + "px";
+    circle.style.left = Math.random() * (window.innerWidth - 50) + "px";
+}
+
+circle.addEventListener("click", placeCircleRandomly)
+//placeCircleRandomly();
