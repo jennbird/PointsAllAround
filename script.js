@@ -20,4 +20,4 @@ function placeCircleRandomly() {
 }
 
 circle.addEventListener("click", placeCircleRandomly)
-//placeCircleRandomly();
+placeCircleRandomly();
