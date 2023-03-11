@@ -1,3 +1,7 @@
+body {
+    margin:0px;
+}
+
 div {
     background: green;
 }
@@ -14,5 +18,12 @@ div {
 
 #buddies { /* target an id with # (an id targets ONE THING. a class targets as MANY AS YOU WANT */
     height: 200px;
-    
+
+}
+
+#circle {
+    background: blue;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
 }
