@@ -28,3 +28,12 @@ div {
     border-radius: 50%;
     position: absolute;
 }
+
+#score {
+    background: aquamarine;
+    height: 25px;
+    width: 25px;
+    border: 2px solid blue;
+    text-align: center;
+    margin: 0 auto;
+}
