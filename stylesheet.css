@@ -37,3 +37,9 @@ div {
     text-align: center;
     margin: 0 auto;
 }
+
+#time {
+    background: red;
+    text-align: center;
+    margin: 0 auto;
+}
