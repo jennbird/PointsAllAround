@@ -20,8 +20,9 @@ function placeCircleRandomly() {
     circle.style.left = Math.random() * (window.innerWidth - 50) + "px";    
 }
 
-function handleCircleClick() {
-    console.log("I've been clicked!");
+function handleCircleClick(event) {
+    event.stopPropagation();
+    console.log("clicked circle!");
     placeCircleRandomly();
     increaseScore();
     updateScore();
@@ -31,13 +32,26 @@ function increaseScore() {
     score = score + 30;
     console.log("score " + score);
 }
+function decreaseScore() {
+    score = score - 10;
+}
 
 function updateScore() {
     scoreElement.innerText = score;
 }
 
+function handleBodyClick() {
+    decreaseScore();
+    placeCircleRandomly();
+    updateScore();
+    console.log("clicked body!");
+}
+
 circle.addEventListener("click", handleCircleClick);
+document.body.addEventListener("click", handleBodyClick);
 placeCircleRandomly();
 updateScore();
+
+
 
 

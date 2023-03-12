@@ -1,4 +1,4 @@
-1. display your 100 points [ ]
+1. display your 100 points [X]
 2. display circle [X]
 3.  add click listener [X]
 4. click w/ in x amt of seconds, display appropriate points. Or no click then deduct 10 points [ ]
@@ -10,4 +10,4 @@
   f. at 3.5 seconds circle disappears and still deduct 10 points
   g. circle reappears somewhere else
   h. loop back to 2.
-5. update points [ ]
+5. update points [X]
