@@ -27,6 +27,8 @@ function placeCircleRandomly() {
 }
 
 function didntClickAnything(){
+    decreaseScore();
+    updateScore();
     placeCircleRandomly();
     console.log("hehe sux to suck");
 }
@@ -47,8 +49,8 @@ function handleCircleClick(event) {
 function handleBodyClick() {
     clearTimeout(timer);
     decreaseScore();
-    placeCircleRandomly();
     updateScore();
+    placeCircleRandomly();
     console.log("clicked body!");
 }
 
