@@ -16,13 +16,16 @@ const scoreElement = document.getElementById("score");
 const circle = document.getElementById("circle");  //this is a function that gets the element with the id circle
 const timeElement = document.getElementById("time");
 let circlePlacedAt;
-let timer;
+let overThreeSecondTimer;
+let replaceCircleTimer;
 
 function placeCircleRandomly() {
     circle.style.top = Math.random() * (window.innerHeight - 50) + "px";
     circle.style.left = Math.random() * (window.innerWidth - 50) + "px";
+    circle.style.background = "blue";
 
-    timer = setTimeout(didntClickAnything, 3250);
+    replaceCircleTimer = setTimeout(didntClickAnything, 3500);
+    overThreeSecondTimer = setTimeout(turnCircleRed, 3000);
     circlePlacedAt = Date.now();    
 }
 
@@ -40,14 +43,16 @@ function handleCircleClick(event) {
     
     event.stopPropagation();
     console.log("clicked circle!");
-    clearTimeout(timer);
+    clearTimeout(replaceCircleTimer);
+    clearTimeout(overThreeSecondTimer);
     placeCircleRandomly();
     increaseScore(timeToClickCircle);
     updateScore();
 }
 
 function handleBodyClick() {
-    clearTimeout(timer);
+    clearTimeout(replaceCircleTimer);
+    clearTimeout(overThreeSecondTimer);
     decreaseScore();
     updateScore();
     placeCircleRandomly();
@@ -78,6 +83,11 @@ function updateScore() {
 
 function updateTime() {
     timeElement.innerText = time;
+}
+
+function turnCircleRed() {
+    console.log("Arr I be RED");
+    circle.style.background = "red";
 }
 
 
