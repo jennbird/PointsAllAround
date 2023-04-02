@@ -14,32 +14,55 @@ function square(num) {
 let score = 100;
 const scoreElement = document.getElementById("score");
 const circle = document.getElementById("circle");  //this is a function that gets the element with the id circle
-let circlePlacedAt;
 const timeElement = document.getElementById("time");
-
+let circlePlacedAt;
+let timer;
 
 function placeCircleRandomly() {
     circle.style.top = Math.random() * (window.innerHeight - 50) + "px";
     circle.style.left = Math.random() * (window.innerWidth - 50) + "px";
 
+    timer = setTimeout(didntClickAnything, 3250);
     circlePlacedAt = Date.now();    
+}
+
+function didntClickAnything(){
+    placeCircleRandomly();
+    console.log("hehe sux to suck");
 }
 
 function handleCircleClick(event) {
     const circleClickedAt = Date.now();
     const timeToClickCircle = (circleClickedAt - circlePlacedAt);
     timeElement.innerText = "You took " + (timeToClickCircle / 1000) + " seconds!"; 
-
+    
     event.stopPropagation();
     console.log("clicked circle!");
+    clearTimeout(timer);
     placeCircleRandomly();
-    increaseScore();
+    increaseScore(timeToClickCircle);
     updateScore();
-
 }
 
-function increaseScore() {
-    score = score + 30;
+function handleBodyClick() {
+    clearTimeout(timer);
+    decreaseScore();
+    placeCircleRandomly();
+    updateScore();
+    console.log("clicked body!");
+}
+
+function increaseScore(timeToClickCircle) {
+    if (timeToClickCircle < 1000){
+        score = score + 30;
+    } else if (timeToClickCircle < 2000){
+        score = score + 20;
+    } else if (timeToClickCircle < 3000){
+        score = score + 10;
+    } else {
+        score = score + 5;
+    };
+
     console.log("score " + score);
 }
 
@@ -56,12 +79,6 @@ function updateTime() {
 }
 
 
-function handleBodyClick() {
-    decreaseScore();
-    placeCircleRandomly();
-    updateScore();
-    console.log("clicked body!");
-}
 
 circle.addEventListener("click", handleCircleClick);
 document.body.addEventListener("click", handleBodyClick);
