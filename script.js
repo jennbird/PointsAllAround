@@ -12,9 +12,11 @@ function square(num) {
 //num is the input. the first and second function do the same thing but the second one is BETTER/EASIER
 //let and const are both variables, BUT the value of let can be changed; the value of const is NOT changeable
 let score = 100;
+let scoreChange;
 const scoreElement = document.getElementById("score");
 const circle = document.getElementById("circle");  //this is a function that gets the element with the id circle
 const timeElement = document.getElementById("time");
+const scorePopupElement = document.getElementById("score-popup");
 let circlePlacedAt;
 let overThreeSecondTimer;
 let replaceCircleTimer;
@@ -37,6 +39,7 @@ function didntClickAnything(){
 }
 
 function handleCircleClick(event) {
+    console.log(event);
     const circleClickedAt = Date.now();
     const timeToClickCircle = (circleClickedAt - circlePlacedAt);
     timeElement.innerText = "You took " + (timeToClickCircle / 1000) + " seconds!"; 
@@ -47,14 +50,15 @@ function handleCircleClick(event) {
     clearTimeout(overThreeSecondTimer);
     placeCircleRandomly();
     increaseScore(timeToClickCircle);
-    updateScore();
+    updateScore(event);
 }
 
-function handleBodyClick() {
+function handleBodyClick(event) {
+    console.log(event.clientX,event.clientY);
     clearTimeout(replaceCircleTimer);
     clearTimeout(overThreeSecondTimer);
     decreaseScore();
-    updateScore();
+    updateScore(event);
     placeCircleRandomly();
     console.log("clicked body!");
 }
@@ -62,12 +66,16 @@ function handleBodyClick() {
 function increaseScore(timeToClickCircle) {
     if (timeToClickCircle < 1000){
         score = score + 30;
+        scoreChange = 30;
     } else if (timeToClickCircle < 2000){
         score = score + 20;
+        scoreChange = 20;
     } else if (timeToClickCircle < 3000){
         score = score + 10;
+        scoreChange = 10;
     } else {
         score = score + 5;
+        scoreChange = 5;
     };
 
     console.log("score " + score);
@@ -75,10 +83,21 @@ function increaseScore(timeToClickCircle) {
 
 function decreaseScore() {
     score = score - 10;
+    scoreChange = -10;
 }
 
-function updateScore() {
+function updateScore(event) {
     scoreElement.innerText = score;
+    scorePopupElement.innerText = scoreChange;
+
+    if (event===undefined){
+        scorePopupElement.style.top  = 351;
+        scorePopupElement.style.left = 351;
+    } else {
+        scorePopupElement.style.top = event.clientY - 30;
+        scorePopupElement.style.left = event.clientX - 18;
+    }
+
 }
 
 function updateTime() {
@@ -86,7 +105,7 @@ function updateTime() {
 }
 
 function turnCircleRed() {
-    console.log("Arr I be RED");
+    //console.log("Arr I be RED");
     circle.style.background = "red";
 }
 
