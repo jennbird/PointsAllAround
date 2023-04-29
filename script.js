@@ -88,8 +88,13 @@ function decreaseScore() {
 
 function updateScore(event) {
     scoreElement.innerText = score;
-    scorePopupElement.innerText = scoreChange;
 
+    if (scoreChange===undefined){
+        return;
+    }
+
+    scorePopupElement.innerText = scoreChange;
+     
     if (event===undefined){
         scorePopupElement.style.top  = 351;
         scorePopupElement.style.left = 351;
@@ -97,6 +102,7 @@ function updateScore(event) {
         scorePopupElement.style.top = event.clientY - 30;
         scorePopupElement.style.left = event.clientX - 18;
     }
+
 
 }
 
