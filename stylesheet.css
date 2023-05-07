@@ -21,6 +21,12 @@ div {
 
 }
 
+#logo {
+    margin: 0 auto;
+    display: block;
+    width: 82%;
+}
+
 #circle {
     background: blue;
     height: 50px;
